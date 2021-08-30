@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'pharmacy-2021.sales-report-service-pharmacy-2021' is invalid and this project uses 'pharmacy2021.salesreportservicepharmacy2021' instead.
+* The original package name 'pharmacy-2021.sales-report-service-pharmacy-2021' is invalid and this project uses 'pharmacy2021.salesreportservice' instead.
 
 # Getting Started
 

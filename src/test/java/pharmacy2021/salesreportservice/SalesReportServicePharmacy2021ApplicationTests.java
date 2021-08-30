@@ -1,4 +1,4 @@
-package pharmacy2021.salesreportservicepharmacy2021;
+package pharmacy2021.salesreportservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
