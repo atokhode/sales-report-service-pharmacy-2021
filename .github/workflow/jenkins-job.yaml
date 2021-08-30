@@ -1,0 +1,14 @@
+name: Trigger Jenkins Job
+'on': pull_request
+jobs:
+  build_and_preview:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+      runs-on: ubuntu-latest
+      steps:
+        - name:  Jenkins Trigger Job (sales-report-service-pharmacy-2021)
+        - uses: appleboy/jenkins-action@master
+          with:
+            url: '${{ secrets.JENKINS_URL }}'
+            user: '${{ secrets.JENKINS_USERNAME }}'
+            token: '${{ secrets.JENKINS_TOKEN }}'
+            job: '${{ secrets.JENKINS_JOB }}'
