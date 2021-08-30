@@ -1,13 +1,13 @@
-package pharmacy2021.salesreportservicepharmacy2021;
+package pharmacy2021.salesreportservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SalesReportServicePharmacy2021Application {
+public class SalesReportServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SalesReportServicePharmacy2021Application.class, args);
+		SpringApplication.run(SalesReportServiceApplication.class, args);
 	}
 
 }
