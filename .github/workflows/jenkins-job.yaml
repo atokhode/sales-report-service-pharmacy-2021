@@ -1,0 +1,16 @@
+name: Trigger Jenkins Job
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name:  'Jenkins Trigger Job (sales-report-service-pharmacy-2021)'
+        uses: appleboy/jenkins-action@master
+        with:
+          user: '${{ secrets.JENKINS_USERNAME }}'
+          token: '${{ secrets.JENKINS_TOKEN }}'
+          url: '${{ secrets.JENKINS_URL }}'
+          job: '${{ secrets.JENKINS_JOB }}'
