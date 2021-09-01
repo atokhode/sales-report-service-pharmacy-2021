@@ -1,0 +1,22 @@
+name: Auto Fetch From Base Repository
+on:
+  schedule:
+    - cron: * 1 * *
+  workflow_dispatch:
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync main with upstream latest
+    steps:
+      - name: Checkout main
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Pull upstream changes
+        id: sync
+      - uses: aormsby/Fork-Sync-With-Upstream-action@v1
+        with:
+          upstream_repository: unknown-liftoff/sales-report-service-pharmacy-2021
+          upstream_branch: main
+      - name: Timestamp
+        run: date
