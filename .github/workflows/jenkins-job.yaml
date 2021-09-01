@@ -1,8 +1,11 @@
 name: Trigger Jenkins Job
-on: [pull_request, workflow_dispatch]
-
+on:
+  pull_request:
+    types: [opened, reopened]
+  workflow_dispatch:
 jobs:
-  build_and_preview:
+  build:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -10,7 +13,7 @@ jobs:
       - name:  'Jenkins Trigger Job (sales-report-service-pharmacy-2021)'
         uses: appleboy/jenkins-action@master
         with:
-          user: '${{ secrets.JENKINS_USERNAME }}'
-          token: '${{ secrets.JENKINS_TOKEN }}'
           url: '${{ secrets.JENKINS_URL }}'
+          user: '${{ secrets.JENKINS_USERNAME }}'
           job: '${{ secrets.JENKINS_JOB }}'
+          token: '${{ secrets.JENKINS_TOKEN }}'
