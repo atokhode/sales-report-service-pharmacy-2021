@@ -16,10 +16,12 @@ jobs:
 
       - name: Pull upstream changes
         id: sync
-        uses: aormsby/Fork-Sync-With-Upstream-action@v1
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.0
         with:
-          upstream_repository: unknown-liftoff/sales-report-service-pharmacy-2021
-          upstream_branch: main
+          target_sync_branch: main
+          upstream_sync_repo: unknown-liftoff/sales-report-service-pharmacy-2021
+          upstream_sync_branch: main
+          target_repo_token: '${{ secrets.GIT_TOKEN }}'
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
