@@ -1,7 +1,7 @@
-name: Auto Fetch From Base Repository
+name: Auto Fetch From Upstream
 on:
   schedule:
-    - cron: * 1 * *
+    - cron:  0 1 * * *
   workflow_dispatch:
 jobs:
   sync_with_upstream:
@@ -9,14 +9,25 @@ jobs:
     name: Sync main with upstream latest
     steps:
       - name: Checkout main
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           ref: main
+          persist-credentials: false
+
       - name: Pull upstream changes
         id: sync
-      - uses: aormsby/Fork-Sync-With-Upstream-action@v1
+        uses: aormsby/Fork-Sync-With-Upstream-action@v1
         with:
           upstream_repository: unknown-liftoff/sales-report-service-pharmacy-2021
           upstream_branch: main
-      - name: Timestamp
-        run: date
+
+      - name: New commits found
+        if: steps.sync.outputs.has_new_commits == 'true'
+        run: echo "New commits were found to sync."
+
+      - name: No new commits
+        if: steps.sync.outputs.has_new_commits == 'false'
+        run: echo "There were no new commits."
+
+      - name: Show value of 'has_new_commits'
+        run: echo ${{ steps.sync.outputs.has_new_commits }}
